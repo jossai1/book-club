@@ -1,7 +1,8 @@
 import React from 'react';
 import BookSearchResult from "./BookSearchResult";
+import PropTypes from "prop-types";
 
-export default function BookSearchResults({books}) {
+function BookSearchResults({books}) {
     return (
        <div>
            {
@@ -10,3 +11,9 @@ export default function BookSearchResults({books}) {
        </div>
     )
 }
+
+BookSearchResults.propTypes = {
+    books: PropTypes.array
+}
+
+export default BookSearchResults;

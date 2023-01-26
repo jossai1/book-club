@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 /*returns a X # of stars where X is the number supplied*/
 const StarRating = ({starsToDisplay}) => new Array(Math.floor(starsToDisplay)).fill(0).map((key, index) => <span key={index}>⭐️</span>);
@@ -9,7 +10,7 @@ const RatingComponent = ({averageRating}) =>
         <span>{averageRating} rating</span>
     </>;
 
-export default function BookSearchResult(props) {
+function BookSearchResult(props) {
     const {volumeInfo, saleInfo, searchInfo} = props;
     const {title, subtitle, authors, description, categories, imageLinks, averageRating} = volumeInfo;
     const {retailPrice, buyLink} = saleInfo;
@@ -37,3 +38,29 @@ export default function BookSearchResult(props) {
         </>
     )
 }
+
+BookSearchResult.propTypes = {
+    volumeInfo: PropTypes.shape({
+        title: PropTypes.string,
+        subtitle: PropTypes.string,
+        authors: PropTypes.array,
+        description: PropTypes.string,
+        categories: PropTypes.array,
+        imageLinks: PropTypes.array,
+        averageRating: PropTypes.number
+    }),
+    saleInfo: PropTypes.shape({
+        retailPrice: PropTypes.number,
+        buyLink: PropTypes.string
+    }),
+    searchInfo: PropTypes.shape({
+        textSnippet: PropTypes.string,
+        fontSize: PropTypes.number
+    })
+}
+
+RatingComponent.propTypes = {
+    averageRating: PropTypes.number
+}
+
+export default BookSearchResult;
