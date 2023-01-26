@@ -1,3 +1,4 @@
+import React from 'react';
 import BookSearchResult from "./BookSearchResult";
 
 export default function BookSearchResults({books}) {
