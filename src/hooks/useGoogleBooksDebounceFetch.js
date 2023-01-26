@@ -7,12 +7,15 @@ export const useGoogleBooksDebounceFetch = (searchQuery, debounceRate=900) => {
 
     useEffect(() => {
         // console.log('calling with', searchQuery);
-        setDataLoaded(false);
+        setDataLoaded(true);
         const id = setTimeout(() => {
             if (searchQuery.trim().length !== 0) {
+                setDataLoaded(false);//show loading text
                 fetchGoogleBooksResults();
             } else {
-                setSearchResults([]);
+                if (searchResults.length > 0) {
+                    setSearchResults([]);
+                }
                 setDataLoaded(true);
             }
         }, debounceRate);
@@ -27,7 +30,7 @@ export const useGoogleBooksDebounceFetch = (searchQuery, debounceRate=900) => {
         if (response.ok) {
             const data = await response.json();
             setSearchResults(data.items);
-            setDataLoaded(true);
+            setDataLoaded(true); //hide loader
         } else {
             console.error(`http error: ${response.status} with message: ${response.text}`);
         }

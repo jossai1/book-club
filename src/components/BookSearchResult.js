@@ -46,11 +46,13 @@ BookSearchResult.propTypes = {
         authors: PropTypes.array,
         description: PropTypes.string,
         categories: PropTypes.array,
-        imageLinks: PropTypes.array,
+        imageLinks: PropTypes.object,
         averageRating: PropTypes.number
     }),
     saleInfo: PropTypes.shape({
-        retailPrice: PropTypes.number,
+        retailPrice: PropTypes.shape({
+            amount: PropTypes.number
+        }),
         buyLink: PropTypes.string
     }),
     searchInfo: PropTypes.shape({

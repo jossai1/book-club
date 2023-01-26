@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 
 function SearchBox({searchQuery, handleOnChange}) {
     return (
-         <input className={styles.searchBox} type='text' value={searchQuery} onChange={handleOnChange}/>
+         <input data-testid="search-box" className={styles.searchBox} type='text' value={searchQuery} onChange={handleOnChange}/>
     )
 }
 
