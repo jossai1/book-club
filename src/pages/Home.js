@@ -8,11 +8,9 @@ const DEBOUNCE_RATE = 900;
 
 const Home = () => {
     const [searchQuery, setSearchQuery] = useState('');
-    const searchResults = useGoogleBooksDebounceFetch(searchQuery, DEBOUNCE_RATE);
+    const [searchResults, dataLoaded] = useGoogleBooksDebounceFetch(searchQuery, DEBOUNCE_RATE);
 
-    const handleOnChange = (e) => {
-        setSearchQuery(e.target.value);
-    }
+    const handleOnChange = (e) => setSearchQuery(e.target.value);
 
     return (
         <div>
@@ -20,9 +18,11 @@ const Home = () => {
                 <h1> 📕 Book Club for Baddies 💁🏾‍♀️</h1>
             </header>
             <main className={styles.container}>
-                {/*<SearchBox searchQuery={searchQuery} handleOnChange={handleOnChange} />*/}
-                <input className={styles.searchBox} type='text' value={searchQuery} onChange={handleOnChange}/>
-                <BookSearchResults books={searchResults}/>
+                <SearchBox searchQuery={searchQuery} handleOnChange={handleOnChange} />
+                {/*<input className={styles.searchBox} type='text' value={searchQuery} onChange={handleOnChange}/>*/}
+                {
+                    dataLoaded === true ? <BookSearchResults books={searchResults}/> : <h2 className={'header'}> Searching...🤞🏾 Hold Tight</h2>
+                }
             </main>
         </div>
     )

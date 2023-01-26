@@ -19,6 +19,9 @@ code {
     monospace;
 }
 
+.header{
+  text-align: center;
+}
 
 /*p, h1, h2 {*/
 /*  text-align: center;*/
