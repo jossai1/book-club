@@ -1,14 +1,13 @@
-import React, {createContext, useState} from 'react';
+import React, {useState} from 'react';
 import BookList from "../components/BookList";
 import {useGoogleBooksDebounceFetch} from "../hooks/useGoogleBooksDebounceFetch";
 import styles from '../styles/Home.module.css';
 import SearchBox from "../components/SearchBox";
 import {useLocalStorage} from "../hooks/useLocalStorage";
+import {LikedQuotesWrapper} from "../hooks/LikedQuotesContext";
 
 const DEBOUNCE_RATE = 500;
 const LIKED_QUOTES_KEY = 'likedBooks';
-
-export const LikedQuotesContext= createContext();
 
 const Home = () => {
     const [searchQuery, setSearchQuery] = useState('');
@@ -18,15 +17,16 @@ const Home = () => {
     const handleOnChange = (e) => setSearchQuery(e.target.value);
 
     return (
-        <LikedQuotesContext.Provider value={{addToLikedList, remmoveFromLikedList, likedList}}>
+        <LikedQuotesWrapper likeUtils={{addToLikedList, remmoveFromLikedList, likedList}}>
             <header className={styles.header}>
                 <h1>📕 Book Club for Baddies 💁🏾‍♀️</h1>
             </header>
             <main className={styles.container}>
-                <SearchBox searchQuery={searchQuery} handleOnChange={handleOnChange} />
+                <SearchBox searchQuery={searchQuery} handleOnChange={handleOnChange}/>
                 {/*<input className={styles.searchBox} type='text' value={searchQuery} onChange={handleOnChange}/>*/}
                 {
-                    dataLoaded === true ? <BookList books={searchResults}/> : <h2 className={'header'}>Searching...🤞🏾 Hold Tight</h2>
+                    dataLoaded === true ? <BookList books={searchResults}/> :
+                        <h2 className={'header'}>Searching...🤞🏾 Hold Tight</h2>
                 }
                 <div>
                     <hr/>
@@ -36,7 +36,7 @@ const Home = () => {
                     </div>
                 </div>
             </main>
-        </LikedQuotesContext.Provider>
+        </LikedQuotesWrapper>
     )
 }
 
