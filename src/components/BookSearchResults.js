@@ -3,7 +3,6 @@ import BookSearchResult from "./BookSearchResult";
 import PropTypes from "prop-types";
 
 function BookSearchResults({books}) {
-    console.log(books)
     return (
        <div>
            {
