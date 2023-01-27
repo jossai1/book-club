@@ -1,4 +1,9 @@
-# Getting Started with Create React App
+# 📕 Book Club for Baddies 💁🏾‍♀️
+Search and bookmark any book!
+- uses Google API
+- deployed using Netlify
+- Demo: https://startling-daifuku-60d9bc.netlify.app/
+---
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

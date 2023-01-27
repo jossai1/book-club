@@ -5,7 +5,6 @@ export function useLocalStorage(collectionKey) {
     //write/commit any changes to likedList to localtorage every time it changes
     useEffect(() => {
         window.localStorage.setItem(collectionKey, JSON.stringify(likedList));
-        console.log(likedList)
     }, [likedList]);
 
     const addToLikedList = (book) => {

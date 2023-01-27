@@ -1,6 +1,8 @@
 :root {
   --background: #fdc63e;
   --foreground: #d4851e;
+  --link: #00B8D2;
+  --link-visited: #006B60;
 }
 
 body {
@@ -22,4 +24,17 @@ code {
 
 .header {
   text-align: center;
+}
+
+hr{
+  border: 1px solid;
+}
+
+a {
+  color: var(--link);
+  font-weight: bold;
+}
+
+a:visited {
+  color: var(--link-visited);
 }

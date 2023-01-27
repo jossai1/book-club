@@ -1,5 +1,5 @@
 import React, {createContext, useState} from 'react';
-import BookSearchResults from "../components/BookSearchResults";
+import BookList from "../components/BookList";
 import {useGoogleBooksDebounceFetch} from "../hooks/useGoogleBooksDebounceFetch";
 import styles from '../styles/Home.module.css';
 import SearchBox from "../components/SearchBox";
@@ -26,12 +26,15 @@ const Home = () => {
                 <SearchBox searchQuery={searchQuery} handleOnChange={handleOnChange} />
                 {/*<input className={styles.searchBox} type='text' value={searchQuery} onChange={handleOnChange}/>*/}
                 {
-                    dataLoaded === true ? <BookSearchResults books={searchResults}/> : <h2 className={'header'}>Searching...🤞🏾 Hold Tight</h2>
+                    dataLoaded === true ? <BookList books={searchResults}/> : <h2 className={'header'}>Searching...🤞🏾 Hold Tight</h2>
                 }
-
-                <h1>🔖Saved List</h1>
-                {/*{JSON.stringify(likedList)}*/}
-                <BookSearchResults books={likedList}/>
+                <div>
+                    <hr/>
+                    <h1 className={styles.header}>🔖Bookmarks</h1>
+                    <div className={styles.bookShelfContainer}>
+                        <BookList books={likedList} savedBookView={true}/>
+                    </div>
+                </div>
             </main>
         </LikedQuotesContext.Provider>
     )

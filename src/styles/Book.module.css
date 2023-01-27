@@ -1,0 +1,8 @@
+.shelfItem {
+  margin: 1%;
+  text-align: center;
+}
+
+.shelfItem:after {
+  content: '____________';
+}
