@@ -1,6 +1,5 @@
 import { render, screen } from '@testing-library/react';
 import App from '../App';
-import Home from "../pages/Home";
 import userEvent from "@testing-library/user-event";
 
 describe('Home Component', () => {
@@ -27,9 +26,9 @@ describe('Home Component', () => {
     const searchBoxTestId = 'search-box';
     render(<App/>);
 
-    const inputEl = await screen.getByTestId(searchBoxTestId);
-    userEvent.type(inputEl, "hi there");
+    const searchBoxEl = await screen.getByTestId(searchBoxTestId);
+    userEvent.type(searchBoxEl, searchQuery);
 
-    expect(screen.getByTestId(searchBoxTestId)).toHaveValue("hi there");
+    expect(searchBoxEl).toHaveValue(searchQuery);
   });
 })

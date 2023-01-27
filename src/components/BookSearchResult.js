@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useContext, useState} from 'react';
 import PropTypes from 'prop-types';
+import {LikedQuotesContext} from "../pages/Home";
 
 /*returns a X # of stars where X is the number supplied*/
 const StarRating = ({starsToDisplay}) => new Array(Math.floor(starsToDisplay)).fill(0).map((key, index) => <span key={index}>⭐️</span>);
@@ -14,6 +15,15 @@ function BookSearchResult(props) {
     const {volumeInfo, saleInfo, searchInfo} = props;
     const {title, subtitle, authors, description, categories, imageLinks, averageRating} = volumeInfo;
     const {retailPrice, buyLink} = saleInfo;
+    const {addToLikedList, remmoveFromLikedList} = useContext(LikedQuotesContext);
+    const [liked, setLiked] = useState(props.liked || false);
+
+    const toggleLiked = () => {
+        setLiked((prevState) => {
+            // props = {...props, liked: prevState}
+            return !prevState;
+        });
+    }
 
     return (
         <>
@@ -27,6 +37,8 @@ function BookSearchResult(props) {
                     {retailPrice && <span>£{retailPrice.amount} ·  </span>}
                     {buyLink && <a href={buyLink} rel="noreferrer" target='_blank'>Purchase Now</a>}
                     · {averageRating && <RatingComponent averageRating={averageRating}/>}
+                    { !liked && <button onClick={() => { addToLikedList({...props, liked: true}); toggleLiked() }}>❤️</button>}
+                    { liked && <button onClick={() => {remmoveFromLikedList({...props, liked: false}); toggleLiked()}}>🗑️</button>}
                 </div>
                 <p dangerouslySetInnerHTML={{__html: searchInfo?.textSnippet}}></p>
                 <details>
@@ -40,6 +52,7 @@ function BookSearchResult(props) {
 }
 
 BookSearchResult.propTypes = {
+    liked: PropTypes.bool,
     volumeInfo: PropTypes.shape({
         title: PropTypes.string,
         subtitle: PropTypes.string,
