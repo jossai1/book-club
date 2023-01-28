@@ -19,7 +19,7 @@ const Home = () => {
     return (
         <LikedQuotesWrapper likeUtils={{addToLikedList, remmoveFromLikedList, likedList}}>
             <header className={styles.header}>
-                <h1>📕 Book Club for Baddies 💁🏾‍♀️</h1>
+                <h1>📕 Personal Bookshelf 💁🏾‍♀️</h1>
             </header>
             <main className={styles.container}>
                 <SearchBox searchQuery={searchQuery} handleOnChange={handleOnChange}/>
